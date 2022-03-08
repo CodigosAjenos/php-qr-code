@@ -49,7 +49,7 @@ class QRimage
 	}
 
 	//----------------------------------------------------------------------
-	private static function image($frame, $pixelPerPoint = 4, $outerFrame = 4)
+	public static function image($frame, $pixelPerPoint = 4, $outerFrame = 4)
 	{
 		$h = count($frame);
 		$w = strlen($frame[0]);
@@ -80,5 +80,32 @@ class QRimage
 		ImageDestroy($base_image);
 
 		return $target_image;
+	}
+
+	//----------------------------------------------------------------------
+	public static function webp($frame, $filename = false, $pixelPerPoint = 4, $outerFrame = 4, $q = 57, $saveandprint = false)
+	{
+		$image = self::image($frame, $pixelPerPoint, $outerFrame);
+
+		if ($filename === false)
+		{
+			Header("Content-type: image/png");
+			ImageWebp($image, null, $q);
+		}
+		else
+		{
+			if ($saveandprint === true)
+			{
+				ImageWebp($image, $filename, $q);
+				header("Content-type: image/png");
+				ImageWebp($image, null, $q);
+			}
+			else
+			{
+				ImageWebp($image, $filename, $q);
+			}
+		}
+
+		ImageDestroy($image);
 	}
 }

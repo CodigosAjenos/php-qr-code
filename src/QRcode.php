@@ -163,4 +163,25 @@ class QRcode
 		$enc = QRencode::factory($level, $size, $margin);
 		return $enc->encodeRAW($text, $outfile);
 	}
+
+	//----------------------------------------------------------------------
+	public static function webp($text, $outfile = false, $level = QRstr :: QR_ECLEVEL_L, $size = 3, $margin = 4, $q = 57, $saveandprint = false)
+	{
+		$enc = QRencode::factory($level, $size, $margin);
+		return $enc->encodeWEBP($text, $outfile, $q, $saveandprint);
+	}
+
+	//----------------------------------------------------------------------
+	public static function base64_png ($text, $level = QRstr :: QR_ECLEVEL_L, $size = 3, $margin = 4)
+	{
+		$enc = QRencode::factory($level, $size, $margin);
+		return $enc->encodeB64PNG($text);
+	}
+
+	//----------------------------------------------------------------------
+	public static function base64_webp ($text, $level = QRstr :: QR_ECLEVEL_L, $size = 3, $margin = 4, $q = 57)
+	{
+		$enc = QRencode::factory($level, $size, $margin);
+		return $enc->encodeB64WEBP($text, $q);
+	}
 }

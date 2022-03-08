@@ -118,4 +118,94 @@ class QRencode
 
 		}
 	}
+
+	//----------------------------------------------------------------------
+	public function encodeWEBP($intext, $outfile = false, $q = 57, $saveandprint = false)
+	{
+		try
+		{
+
+			ob_start();
+			$tab = $this->encode($intext);
+			$err = ob_get_contents();
+			ob_end_clean();
+
+			if ($err != '') QRtools::log($outfile, $err);
+
+			$maxSize = (int)(QRconfig :: QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
+
+			QRimage::webp($tab, $outfile, min(max(1, $this->size), $maxSize), $this->margin, $q, $saveandprint);
+
+		}
+		catch(Exception $e)
+		{
+
+			QRtools::log($outfile, $e->getMessage());
+
+		}
+	}
+
+	//----------------------------------------------------------------------
+	public function encodeB64PNG($intext)
+	{
+		try
+		{
+
+			ob_start();
+			$tab = $this->encode($intext);
+			$err = ob_get_contents();
+			ob_end_clean();
+
+			if ($err != '') QRtools::log('b64png', $err);
+
+			$maxSize = (int)(QRconfig :: QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
+
+			$target_image = QRimage::image($tab, min(max(1, $this->size), $maxSize), $this->margin);
+
+			ob_start(); // Let's start output buffering.
+			imagepng($target_image); //This will normally output the image, but because of ob_start(), it won't.
+			$contents = ob_get_contents(); //Instead, output above is saved to $contents
+			ob_end_clean(); //End the output buffer.
+
+			return "data:image/png;base64," . base64_encode($contents);
+		}
+		catch(Exception $e)
+		{
+
+			QRtools::log('b64png', $e->getMessage());
+
+		}
+	}
+
+	//----------------------------------------------------------------------
+	public function encodeB64WEBP($intext, $q = 57)
+	{
+		try
+		{
+
+			ob_start();
+			$tab = $this->encode($intext);
+			$err = ob_get_contents();
+			ob_end_clean();
+
+			if ($err != '') QRtools::log('b64webp', $err);
+
+			$maxSize = (int)(QRconfig :: QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
+
+			$target_image = QRimage::image($tab, min(max(1, $this->size), $maxSize), $this->margin);
+
+			ob_start(); // Let's start output buffering.
+			imagewebp($target_image, null, $q); //This will normally output the image, but because of ob_start(), it won't.
+			$contents = ob_get_contents(); //Instead, output above is saved to $contents
+			ob_end_clean(); //End the output buffer.
+
+			return "data:image/webp;base64," . base64_encode($contents);
+		}
+		catch(Exception $e)
+		{
+
+			QRtools::log('b64webp', $e->getMessage());
+
+		}
+	}
 }
