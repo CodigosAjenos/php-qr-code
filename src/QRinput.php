@@ -310,7 +310,7 @@ class QRinput
 	//----------------------------------------------------------------------
 	public function __construct($version = 0, $level = QRstr :: QR_ECLEVEL_L)
 	{
-		if ($version < 0 || $version > QRspec :: QRSPEC_VERSION_MAX || $level > QR_ECLEVEL_H)
+		if ($version < 0 || $version > QRspec :: QRSPEC_VERSION_MAX || $level > QRstr :: QR_ECLEVEL_H)
 		{
 			throw new Exception('Invalid version no');
 			return NULL;
@@ -349,7 +349,7 @@ class QRinput
 	//----------------------------------------------------------------------
 	public function setErrorCorrectionLevel($level)
 	{
-		if ($level > QR_ECLEVEL_H)
+		if ($level > QRstr :: QR_ECLEVEL_H)
 		{
 			throw new Exception('Invalid ECLEVEL');
 			return -1;

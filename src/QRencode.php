@@ -106,7 +106,7 @@ class QRencode
 
 			if ($err != '') QRtools::log($outfile, $err);
 
-			$maxSize = (int)(QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
+			$maxSize = (int)(QRconfig :: QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
 
 			QRimage::png($tab, $outfile, min(max(1, $this->size), $maxSize), $this->margin, $saveandprint);
 

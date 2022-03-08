@@ -14,7 +14,7 @@ class QRcode
 		{
 			throw new Exception('wrong version');
 		}
-		if ($input->getErrorCorrectionLevel() > QR_ECLEVEL_H)
+		if ($input->getErrorCorrectionLevel() > QRstr :: QR_ECLEVEL_H)
 		{
 			throw new Exception('wrong level');
 		}
@@ -66,13 +66,13 @@ class QRcode
 		if ($mask < 0)
 		{
 
-			if (QR_FIND_BEST_MASK)
+			if (QRconfig :: QR_FIND_BEST_MASK)
 			{
 				$masked = $maskObj->mask($width, $frame, $input->getErrorCorrectionLevel());
 			}
 			else
 			{
-				$masked = $maskObj->makeMask($width, $frame, (intval(QR_DEFAULT_MASK) % 8), $input->getErrorCorrectionLevel());
+				$masked = $maskObj->makeMask($width, $frame, (intval(QRconfig :: QRconfig :: QR_DEFAULT_MASK) % 8), $input->getErrorCorrectionLevel());
 			}
 		}
 		else

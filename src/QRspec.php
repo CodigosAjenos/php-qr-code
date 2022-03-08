@@ -547,9 +547,9 @@ class QRspec
 		if (!isset(self::$frames[$version]))
 		{
 
-			$fileName = QR_CACHE_DIR . 'frame_' . $version . '.dat';
+			$fileName = QRconfig :: QR_CACHE_DIR . 'frame_' . $version . '.dat';
 
-			if (QR_CACHEABLE)
+			if (QRconfig :: QR_CACHEABLE)
 			{
 				if (file_exists($fileName))
 				{
