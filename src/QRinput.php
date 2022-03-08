@@ -1,35 +1,10 @@
-﻿<?php
-/*
- * PHP QR Code encoder
- *
- * Input encoding class
- *
- * Based on libqrencode C library distributed under LGPL 2.1
- * Copyright (C) 2006, 2007, 2008, 2009 Kentaro Fukuchi <fukuchi@megaui.net>
- *
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia <deltalab at poczta dot fm>
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-*/
-
-define('STRUCTURE_HEADER_BITS', 20);
-define('MAX_STRUCTURED_SYMBOLS', 16);
+<?php
+namespace QRcode;
 
 class QRinputItem
 {
+	const STRUCTURE_HEADER_BITS  = 20;
+	const MAX_STRUCTURED_SYMBOLS = 16;
 
 	public $mode;
 	public $size;
@@ -243,7 +218,7 @@ class QRinputItem
 			$bits = QRinput::estimateBitsModeKanji($this->size);
 		break;
 		case QR_MODE_STRUCTURE:
-			return STRUCTURE_HEADER_BITS;
+			return self :: STRUCTURE_HEADER_BITS;
 		default:
 			return 0;
 		}
@@ -335,7 +310,7 @@ class QRinput
 	//----------------------------------------------------------------------
 	public function __construct($version = 0, $level = QR_ECLEVEL_L)
 	{
-		if ($version < 0 || $version > QRSPEC_VERSION_MAX || $level > QR_ECLEVEL_H)
+		if ($version < 0 || $version > QRspec :: QRSPEC_VERSION_MAX || $level > QR_ECLEVEL_H)
 		{
 			throw new Exception('Invalid version no');
 			return NULL;
@@ -354,7 +329,7 @@ class QRinput
 	//----------------------------------------------------------------------
 	public function setVersion($version)
 	{
-		if ($version < 0 || $version > QRSPEC_VERSION_MAX)
+		if ($version < 0 || $version > QRspec :: QRSPEC_VERSION_MAX)
 		{
 			throw new Exception('Invalid version no');
 			return -1;
@@ -409,12 +384,12 @@ class QRinput
 	//----------------------------------------------------------------------
 	public function insertStructuredAppendHeader($size, $index, $parity)
 	{
-		if ($size > MAX_STRUCTURED_SYMBOLS)
+		if ($size > self :: MAX_STRUCTURED_SYMBOLS)
 		{
 			throw new Exception('insertStructuredAppendHeader wrong size');
 		}
 
-		if ($index <= 0 || $index > MAX_STRUCTURED_SYMBOLS)
+		if ($index <= 0 || $index > self :: MAX_STRUCTURED_SYMBOLS)
 		{
 			throw new Exception('insertStructuredAppendHeader wrong index');
 		}
