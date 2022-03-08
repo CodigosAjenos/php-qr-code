@@ -612,7 +612,6 @@ class QRcode
 	// -------------------------------------------------
 	
 
-	
 	/**
 	 * This is the class constructor.
 	 * Creates a QRcode object
