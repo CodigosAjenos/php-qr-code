@@ -3,7 +3,6 @@ namespace QRcode;
 
 class QRsplit
 {
-
 	public $dataStr = '';
 	public $input;
 	public $modeHint;

@@ -3,7 +3,6 @@ namespace QRcode;
 
 class FrameFiller
 {
-
 	public $width;
 	public $frame;
 	public $x;
@@ -101,4 +100,4 @@ class FrameFiller
 		return ['x' => $x, 'y' => $y];
 	}
 
-};
+}

@@ -3,7 +3,6 @@ namespace QRcode;
 
 class QRcode
 {
-
 	public $version;
 	public $width;
 	public $data;

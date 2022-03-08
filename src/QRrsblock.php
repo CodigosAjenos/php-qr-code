@@ -17,4 +17,4 @@ class QRrsblock
 		$this->eccLength = $el;
 		$this->ecc = $ecc;
 	}
-};
+}

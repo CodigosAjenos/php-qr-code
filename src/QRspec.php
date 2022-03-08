@@ -609,5 +609,4 @@ class QRspec
 	{
 		return ($spec[0] + $spec[3]) * $spec[2];
 	}
-
 }
