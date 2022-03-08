@@ -13,4 +13,6 @@ class QRconfig
 	const QR_FIND_FROM_RANDOM = false; // if false, checks all masks available, otherwise value tells count of masks need to be checked, mask id are got randomly
 	const QR_DEFAULT_MASK     = 2;     // when QR_FIND_BEST_MASK === false
 	const QR_PNG_MAXIMUM_SIZE = 1024;  // maximum allowed png image width (in pixels), tune to make sure GD and PHP can handle such big images
+
+	const QR_IMAGE = true;
 }
