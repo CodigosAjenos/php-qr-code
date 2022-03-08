@@ -43,7 +43,7 @@ class QRinputItem
 
 			$val = 0x1;
 			$bs->appendNum(4, $val);
-			$bs->appendNum(QRspec::lengthIndicator(QR_MODE_NUM, $version), $this->size);
+			$bs->appendNum(QRspec::lengthIndicator(QRstr :: QR_MODE_NUM, $version), $this->size);
 
 			for ($i = 0;$i < $words;$i++)
 			{
@@ -84,7 +84,7 @@ class QRinputItem
 			$bs = new QRbitstream();
 
 			$bs->appendNum(4, 0x02);
-			$bs->appendNum(QRspec::lengthIndicator(QR_MODE_AN, $version), $this->size);
+			$bs->appendNum(QRspec::lengthIndicator(QRstr :: QR_MODE_AN, $version), $this->size);
 
 			for ($i = 0;$i < $words;$i++)
 			{
@@ -118,7 +118,7 @@ class QRinputItem
 			$bs = new QRbitstream();
 
 			$bs->appendNum(4, 0x4);
-			$bs->appendNum(QRspec::lengthIndicator(QR_MODE_8, $version), $this->size);
+			$bs->appendNum(QRspec::lengthIndicator(QRstr :: QR_MODE_8, $version), $this->size);
 
 			for ($i = 0;$i < $this->size;$i++)
 			{
@@ -144,7 +144,7 @@ class QRinputItem
 			$bs = new QRbitrtream();
 
 			$bs->appendNum(4, 0x8);
-			$bs->appendNum(QRspec::lengthIndicator(QR_MODE_KANJI, $version), (int)($this->size / 2));
+			$bs->appendNum(QRspec::lengthIndicator(QRstr :: QR_MODE_KANJI, $version), (int)($this->size / 2));
 
 			for ($i = 0;$i < $this->size;$i += 2)
 			{
@@ -205,19 +205,19 @@ class QRinputItem
 
 		switch ($this->mode)
 		{
-		case QR_MODE_NUM:
+		case QRstr :: QR_MODE_NUM:
 			$bits = QRinput::estimateBitsModeNum($this->size);
 		break;
-		case QR_MODE_AN:
+		case QRstr :: QR_MODE_AN:
 			$bits = QRinput::estimateBitsModeAn($this->size);
 		break;
-		case QR_MODE_8:
+		case QRstr :: QR_MODE_8:
 			$bits = QRinput::estimateBitsMode8($this->size);
 		break;
-		case QR_MODE_KANJI:
+		case QRstr :: QR_MODE_KANJI:
 			$bits = QRinput::estimateBitsModeKanji($this->size);
 		break;
-		case QR_MODE_STRUCTURE:
+		case QRstr :: QR_MODE_STRUCTURE:
 			return self :: STRUCTURE_HEADER_BITS;
 		default:
 			return 0;
@@ -265,19 +265,19 @@ class QRinputItem
 
 				switch ($this->mode)
 				{
-				case QR_MODE_NUM:
+				case QRstr :: QR_MODE_NUM:
 					$ret = $this->encodeModeNum($version);
 				break;
-				case QR_MODE_AN:
+				case QRstr :: QR_MODE_AN:
 					$ret = $this->encodeModeAn($version);
 				break;
-				case QR_MODE_8:
+				case QRstr :: QR_MODE_8:
 					$ret = $this->encodeMode8($version);
 				break;
-				case QR_MODE_KANJI:
+				case QRstr :: QR_MODE_KANJI:
 					$ret = $this->encodeModeKanji($version);
 				break;
-				case QR_MODE_STRUCTURE:
+				case QRstr :: QR_MODE_STRUCTURE:
 					$ret = $this->encodeModeStructure();
 				break;
 
@@ -398,7 +398,7 @@ class QRinput
 
 		try
 		{
-			$entry = new QRinputItem(QR_MODE_STRUCTURE, 3, buf);
+			$entry = new QRinputItem(QRstr :: QR_MODE_STRUCTURE, 3, buf);
 			array_unshift($this->items, $entry);
 			return 0;
 		}
@@ -415,7 +415,7 @@ class QRinput
 
 		foreach ($this->items as $item)
 		{
-			if ($item->mode != QR_MODE_STRUCTURE)
+			if ($item->mode != QRstr :: QR_MODE_STRUCTURE)
 			{
 				for ($i = $item->size - 1;$i >= 0;$i--)
 				{
@@ -538,19 +538,19 @@ class QRinput
 
 		switch ($mode)
 		{
-		case QR_MODE_NUM:
+		case QRstr :: QR_MODE_NUM:
 			return self::checkModeNum($size, $data);
 		break;
-		case QR_MODE_AN:
+		case QRstr :: QR_MODE_AN:
 			return self::checkModeAn($size, $data);
 		break;
-		case QR_MODE_KANJI:
+		case QRstr :: QR_MODE_KANJI:
 			return self::checkModeKanji($size, $data);
 		break;
-		case QR_MODE_8:
+		case QRstr :: QR_MODE_8:
 			return true;
 		break;
-		case QR_MODE_STRUCTURE:
+		case QRstr :: QR_MODE_STRUCTURE:
 			return true;
 		break;
 
@@ -600,7 +600,7 @@ class QRinput
 		$payload = $bits - 4 - QRspec::lengthIndicator($mode, $version);
 		switch ($mode)
 		{
-		case QR_MODE_NUM:
+		case QRstr :: QR_MODE_NUM:
 			$chunks = (int)($payload / 10);
 			$remain = $payload - $chunks * 10;
 			$size = $chunks * 3;
@@ -613,19 +613,19 @@ class QRinput
 				$size += 1;
 			}
 			break;
-		case QR_MODE_AN:
+		case QRstr :: QR_MODE_AN:
 			$chunks = (int)($payload / 11);
 			$remain = $payload - $chunks * 11;
 			$size = $chunks * 2;
 			if ($remain >= 6) $size++;
 			break;
-		case QR_MODE_8:
+		case QRstr :: QR_MODE_8:
 			$size = (int)($payload / 8);
 			break;
-		case QR_MODE_KANJI:
+		case QRstr :: QR_MODE_KANJI:
 			$size = (int)(($payload / 13) * 2);
 			break;
-		case QR_MODE_STRUCTURE:
+		case QRstr :: QR_MODE_STRUCTURE:
 			$size = (int)($payload / 8);
 			break;
 		default:
