@@ -16,3 +16,8 @@ class QRconfig
 
 	const QR_IMAGE = true;
 }
+
+if (QRconfig :: QR_CACHEABLE && ! file_exists(QRconfig :: QR_CACHE_DIR))
+{
+	@mkdir(QRconfig :: QR_CACHE_DIR, 0777, true);
+}
