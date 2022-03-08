@@ -1,7 +1,7 @@
 {
     "name": "jysperu/QRCode",
     "description": "Based in http://phpqrcode.sourceforge.net/",
-    "keywords": ["greenter", "sunat", "xml", "facturacion-electronica"],
+    "keywords": ["QRcode", "qr"],
     "license": "GPL",
     "type": "library",
     "require": {
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "QRCode\\": "src/"
+            "QRcode": "src/QRcode.php"
         }
     }
 }
