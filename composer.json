@@ -1,15 +1,15 @@
 {
     "name": "jysperu/QRCode",
     "description": "Based in http://phpqrcode.sourceforge.net/",
-    "keywords": ["QRcode", "qr"],
+    "keywords": ["QRcode", "qr", "PHP QR"],
     "license": "GPL",
     "type": "library",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.2"
     },
     "autoload": {
         "psr-4": {
-            "QRcode": "src/QRcode.php"
+            "QRcode": "src/"
         }
     }
 }
