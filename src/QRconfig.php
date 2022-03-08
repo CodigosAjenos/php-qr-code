@@ -6,7 +6,7 @@ defined('QRcode_QR_APPPATH') or define('QRcode_QR_APPPATH', __DIR__);
 class QRconfig
 {
 	const QR_APPPATH          = QRcode_QR_APPPATH;
-	const QR_CACHEABLE        = true;  // use cache - more disk reads but less CPU power, masks and format templates are stored there
+	const QR_CACHEABLE        = false;  // use cache - more disk reads but less CPU power, masks and format templates are stored there
 	const QR_CACHE_DIR        = QRcode_QR_APPPATH . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR; // used when QR_CACHEABLE === true
 	const QR_LOG_DIR          = QRcode_QR_APPPATH . DIRECTORY_SEPARATOR; // default error logs dir
 	const QR_FIND_BEST_MASK   = true;  // if true, estimates best mask (spec. default, but extremally slow; set to false to significant performance boost but (propably) worst quality code
