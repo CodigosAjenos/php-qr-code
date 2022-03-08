@@ -1,37 +1,12 @@
-﻿<?php
-/*
- * PHP QR Code encoder
- *
- * Masking
- *
- * Based on libqrencode C library distributed under LGPL 2.1
- * Copyright (C) 2006, 2007, 2008, 2009 Kentaro Fukuchi <fukuchi@megaui.net>
- *
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia <deltalab at poczta dot fm>
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-*/
-
-define('N1', 3);
-define('N2', 3);
-define('N3', 40);
-define('N4', 10);
+<?php
+namespace QRcode;
 
 class QRmask
 {
+	const N1 =  3;
+	const N2 =  3;
+	const N3 = 40;
+	const N4 = 10;
 
 	public $runLength = [];
 
@@ -244,7 +219,7 @@ class QRmask
 
 			if ($this->runLength[$i] >= 5)
 			{
-				$demerit += (N1 + ($this->runLength[$i] - 5));
+				$demerit += (self :: N1 + ($this->runLength[$i] - 5));
 			}
 			if ($i & 1)
 			{
@@ -255,11 +230,11 @@ class QRmask
 					{
 						if (($this->runLength[$i - 3] < 0) || ($this->runLength[$i - 3] >= (4 * $fact)))
 						{
-							$demerit += N3;
+							$demerit += self :: N3;
 						}
 						else if ((($i + 3) >= $length) || ($this->runLength[$i + 3] >= (4 * $fact)))
 						{
-							$demerit += N3;
+							$demerit += self :: N3;
 						}
 					}
 				}
@@ -292,7 +267,7 @@ class QRmask
 
 					if (($b22 | ($w22 ^ 1)) & 1)
 					{
-						$demerit += N2;
+						$demerit += self :: N2;
 					}
 				}
 				if (($x == 0) && (ord($frameY[$x]) & 1))
@@ -384,7 +359,7 @@ class QRmask
 			$blacks = $this->makeMaskNo($i, $width, $frame, $mask);
 			$blacks += $this->writeFormatInformation($width, $mask, $i, $level);
 			$blacks = (int)(100 * $blacks / ($width * $width));
-			$demerit = (int)((int)(abs($blacks - 50) / 5) * N4);
+			$demerit = (int)((int)(abs($blacks - 50) / 5) * self :: N4);
 			$demerit += $this->evaluateSymbol($width, $mask);
 
 			if ($demerit < $minDemerit)
