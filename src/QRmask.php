@@ -13,7 +13,7 @@ class QRmask
 	//----------------------------------------------------------------------
 	public function __construct()
 	{
-		$this->runLength = array_fill(0, QRSPEC_WIDTH_MAX + 1, 0);
+		$this->runLength = array_fill(0, QRspec :: QRSPEC_WIDTH_MAX + 1, 0);
 	}
 
 	//----------------------------------------------------------------------

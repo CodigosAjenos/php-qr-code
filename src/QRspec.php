@@ -1,46 +1,16 @@
-﻿<?php
-/*
- * PHP QR Code encoder
- *
- * QR Code specifications
- *
- * Based on libqrencode C library distributed under LGPL 2.1
- * Copyright (C) 2006, 2007, 2008, 2009 Kentaro Fukuchi <fukuchi@megaui.net>
- *
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia <deltalab at poczta dot fm>
- *
- * The following data / specifications are taken from
- * "Two dimensional symbol -- QR-code -- Basic Specification" (JIS X0510:2004)
- *  or
- * "Automatic identification and data capture techniques --
- *  QR Code 2005 bar code symbology specification" (ISO/IEC 18004:2006)
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-*/
-
-define('QRSPEC_VERSION_MAX', 40);
-define('QRSPEC_WIDTH_MAX', 177);
-
-define('QRCAP_WIDTH', 0);
-define('QRCAP_WORDS', 1);
-define('QRCAP_REMINDER', 2);
-define('QRCAP_EC', 3);
+<?php
+namespace QRcode;
 
 class QRspec
 {
+	const QRSPEC_VERSION_MAX = 40;
+	const QRSPEC_WIDTH_MAX = 177;
+
+	const QRCAP_WIDTH = 0;
+	const QRCAP_WORDS = 1;
+	const QRCAP_REMINDER = 2;
+	const QRCAP_EC = 3;
+
 
 	public static $capacity = [
 		[  0,    0, 0, [  0,    0,    0,    0]], 
@@ -89,34 +59,33 @@ class QRspec
 	//----------------------------------------------------------------------
 	public static function getDataLength($version, $level)
 	{
-		return self::$capacity[$version][QRCAP_WORDS] - self::$capacity[$version][QRCAP_EC][$level];
+		return self::$capacity[$version][self :: QRCAP_WORDS] - self::$capacity[$version][self :: QRCAP_EC][$level];
 	}
 
 	//----------------------------------------------------------------------
 	public static function getECCLength($version, $level)
 	{
-		return self::$capacity[$version][QRCAP_EC][$level];
+		return self::$capacity[$version][self :: QRCAP_EC][$level];
 	}
 
 	//----------------------------------------------------------------------
 	public static function getWidth($version)
 	{
-		return self::$capacity[$version][QRCAP_WIDTH];
+		return self::$capacity[$version][self :: QRCAP_WIDTH];
 	}
 
 	//----------------------------------------------------------------------
 	public static function getRemainder($version)
 	{
-		return self::$capacity[$version][QRCAP_REMINDER];
+		return self::$capacity[$version][self :: QRCAP_REMINDER];
 	}
 
 	//----------------------------------------------------------------------
 	public static function getMinimumVersion($size, $level)
 	{
-
-		for ($i = 1;$i <= QRSPEC_VERSION_MAX;$i++)
+		for ($i = 1;$i <= self :: QRSPEC_VERSION_MAX;$i++)
 		{
-			$words = self::$capacity[$i][QRCAP_WORDS] - self::$capacity[$i][QRCAP_EC][$level];
+			$words = self::$capacity[$i][self :: QRCAP_WORDS] - self::$capacity[$i][self :: QRCAP_EC][$level];
 			if ($words >= $size) return $i;
 		}
 
@@ -363,7 +332,7 @@ class QRspec
 	//----------------------------------------------------------------------
 	public static function getVersionPattern($version)
 	{
-		if ($version < 7 || $version > QRSPEC_VERSION_MAX) return 0;
+		if ($version < 7 || $version > self :: QRSPEC_VERSION_MAX) return 0;
 
 		return self::$versionPattern[$version - 7];
 	}
@@ -417,7 +386,7 @@ class QRspec
 	//----------------------------------------------------------------------
 	public static function createFrame($version)
 	{
-		$width = self::$capacity[$version][QRCAP_WIDTH];
+		$width = self::$capacity[$version][self :: QRCAP_WIDTH];
 		$frameLine = str_repeat("\0", $width);
 		$frame = array_fill(0, $width, $frameLine);
 
@@ -573,7 +542,7 @@ class QRspec
 	//----------------------------------------------------------------------
 	public static function newFrame($version)
 	{
-		if ($version < 1 || $version > QRSPEC_VERSION_MAX) return null;
+		if ($version < 1 || $version > self :: QRSPEC_VERSION_MAX) return null;
 
 		if (!isset(self::$frames[$version]))
 		{
