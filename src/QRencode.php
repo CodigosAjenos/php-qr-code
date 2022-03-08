@@ -59,7 +59,7 @@ class QRrawcode
 	//----------------------------------------------------------------------
 	public function __construct(QRinput $input)
 	{
-		$spec = array(0, 0, 0, 0, 0);
+		$spec = [0, 0, 0, 0, 0];
 
 		$this->datacode = $input->getByteStream();
 		if (is_null($this->datacode))
@@ -369,7 +369,7 @@ class FrameFiller
 			if ($this->bit == - 1)
 			{
 				$this->bit = 0;
-				return array('x' => $this->x, 'y' => $this->y);
+				return ['x' => $this->x, 'y' => $this->y];
 			}
 
 			$x = $this->x;
@@ -424,7 +424,7 @@ class FrameFiller
 		}
 		while (ord($this->frame[$y][$x]) & 0x80);
 
-		return array('x' => $x, 'y' => $y);
+		return ['x' => $x, 'y' => $y];
 	}
 
 };

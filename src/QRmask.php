@@ -148,7 +148,7 @@ class QRmask
 				}
 				else
 				{
-					$maskFunc = call_user_func(array($this, 'mask' . $maskNo), $x, $y);
+					$maskFunc = call_user_func([$this, 'mask' . $maskNo], $x, $y);
 					$bitMask[$y][$x] = ($maskFunc == 0) ? 1 : 0;
 				}
 
@@ -358,7 +358,7 @@ class QRmask
 		$bestMaskNum = 0;
 		$bestMask = [];
 
-		$checked_masks = array(0, 1, 2, 3, 4, 5, 6, 7);
+		$checked_masks = [0, 1, 2, 3, 4, 5, 6, 7];
 
 		if (QR_FIND_FROM_RANDOM !== false)
 		{
