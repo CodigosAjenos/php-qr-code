@@ -147,15 +147,48 @@ class QRspec
 	// Error correction code -----------------------------------------------
 	// Table of the error correction code (Reed-Solomon block)
 	// See Table 12-16 (pp.30-36), JIS X0510:2004.
-	public static $eccTable = array(array(array(0, 0), array(0, 0), array(0, 0), array(0, 0)), array(array(1, 0), array(1, 0), array(1, 0), array(1, 0)), // 1
-	array(array(1, 0), array(1, 0), array(1, 0), array(1, 0)), array(array(1, 0), array(1, 0), array(2, 0), array(2, 0)), array(array(1, 0), array(2, 0), array(2, 0), array(4, 0)), array(array(1, 0), array(2, 0), array(2, 2), array(2, 2)), // 5
-	array(array(2, 0), array(4, 0), array(4, 0), array(4, 0)), array(array(2, 0), array(4, 0), array(2, 4), array(4, 1)), array(array(2, 0), array(2, 2), array(4, 2), array(4, 2)), array(array(2, 0), array(3, 2), array(4, 4), array(4, 4)), array(array(2, 2), array(4, 1), array(6, 2), array(6, 2)), //10
-	array(array(4, 0), array(1, 4), array(4, 4), array(3, 8)), array(array(2, 2), array(6, 2), array(4, 6), array(7, 4)), array(array(4, 0), array(8, 1), array(8, 4), array(12, 4)), array(array(3, 1), array(4, 5), array(11, 5), array(11, 5)), array(array(5, 1), array(5, 5), array(5, 7), array(11, 7)), //15
-	array(array(5, 1), array(7, 3), array(15, 2), array(3, 13)), array(array(1, 5), array(10, 1), array(1, 15), array(2, 17)), array(array(5, 1), array(9, 4), array(17, 1), array(2, 19)), array(array(3, 4), array(3, 11), array(17, 4), array(9, 16)), array(array(3, 5), array(3, 13), array(15, 5), array(15, 10)), //20
-	array(array(4, 4), array(17, 0), array(17, 6), array(19, 6)), array(array(2, 7), array(17, 0), array(7, 16), array(34, 0)), array(array(4, 5), array(4, 14), array(11, 14), array(16, 14)), array(array(6, 4), array(6, 14), array(11, 16), array(30, 2)), array(array(8, 4), array(8, 13), array(7, 22), array(22, 13)), //25
-	array(array(10, 2), array(19, 4), array(28, 6), array(33, 4)), array(array(8, 4), array(22, 3), array(8, 26), array(12, 28)), array(array(3, 10), array(3, 23), array(4, 31), array(11, 31)), array(array(7, 7), array(21, 7), array(1, 37), array(19, 26)), array(array(5, 10), array(19, 10), array(15, 25), array(23, 25)), //30
-	array(array(13, 3), array(2, 29), array(42, 1), array(23, 28)), array(array(17, 0), array(10, 23), array(10, 35), array(19, 35)), array(array(17, 1), array(14, 21), array(29, 19), array(11, 46)), array(array(13, 6), array(14, 23), array(44, 7), array(59, 1)), array(array(12, 7), array(12, 26), array(39, 14), array(22, 41)), //35
-	array(array(6, 14), array(6, 34), array(46, 10), array(2, 64)), array(array(17, 4), array(29, 14), array(49, 10), array(24, 46)), array(array(4, 18), array(13, 32), array(48, 14), array(42, 32)), array(array(20, 4), array(40, 7), array(43, 22), array(10, 67)), array(array(19, 6), array(18, 31), array(34, 34), array(20, 61)), //40
+	public static $eccTable = array(
+		array(array( 0,  0), array( 0,  0), array( 0,  0), array( 0,  0)), 
+		array(array( 1,  0), array( 1,  0), array( 1,  0), array( 1,  0)), // 1
+		array(array( 1,  0), array( 1,  0), array( 1,  0), array( 1,  0)), 
+		array(array( 1,  0), array( 1,  0), array( 2,  0), array( 2,  0)), 
+		array(array( 1,  0), array( 2,  0), array( 2,  0), array( 4,  0)), 
+		array(array( 1,  0), array( 2,  0), array( 2,  2), array( 2,  2)), // 5
+		array(array( 2,  0), array( 4,  0), array( 4,  0), array( 4,  0)), 
+		array(array( 2,  0), array( 4,  0), array( 2,  4), array( 4,  1)), 
+		array(array( 2,  0), array( 2,  2), array( 4,  2), array( 4,  2)), 
+		array(array( 2,  0), array( 3,  2), array( 4,  4), array( 4,  4)), 
+		array(array( 2,  2), array( 4,  1), array( 6,  2), array( 6,  2)), //10
+		array(array( 4,  0), array( 1,  4), array( 4,  4), array( 3,  8)), 
+		array(array( 2,  2), array( 6,  2), array( 4,  6), array( 7,  4)), 
+		array(array( 4,  0), array( 8,  1), array( 8,  4), array(12,  4)), 
+		array(array( 3,  1), array( 4,  5), array(11,  5), array(11,  5)), 
+		array(array( 5,  1), array( 5,  5), array( 5,  7), array(11,  7)), //15
+		array(array( 5,  1), array( 7,  3), array(15,  2), array( 3, 13)), 
+		array(array( 1,  5), array(10,  1), array( 1, 15), array( 2, 17)), 
+		array(array( 5,  1), array( 9,  4), array(17,  1), array( 2, 19)), 
+		array(array( 3,  4), array( 3, 11), array(17,  4), array( 9, 16)), 
+		array(array( 3,  5), array( 3, 13), array(15,  5), array(15, 10)), //20
+		array(array( 4,  4), array(17,  0), array(17,  6), array(19,  6)), 
+		array(array( 2,  7), array(17,  0), array( 7, 16), array(34,  0)), 
+		array(array( 4,  5), array( 4, 14), array(11, 14), array(16, 14)), 
+		array(array( 6,  4), array( 6, 14), array(11, 16), array(30,  2)), 
+		array(array( 8,  4), array( 8, 13), array( 7, 22), array(22, 13)), //25
+		array(array(10,  2), array(19,  4), array(28,  6), array(33,  4)), 
+		array(array( 8,  4), array(22,  3), array( 8, 26), array(12, 28)), 
+		array(array( 3, 10), array( 3, 23), array( 4, 31), array(11, 31)), 
+		array(array( 7,  7), array(21,  7), array( 1, 37), array(19, 26)), 
+		array(array( 5, 10), array(19, 10), array(15, 25), array(23, 25)), //30
+		array(array(13,  3), array( 2, 29), array(42,  1), array(23, 28)), 
+		array(array(17,  0), array(10, 23), array(10, 35), array(19, 35)), 
+		array(array(17,  1), array(14, 21), array(29, 19), array(11, 46)), 
+		array(array(13,  6), array(14, 23), array(44,  7), array(59,  1)), 
+		array(array(12,  7), array(12, 26), array(39, 14), array(22, 41)), //35
+		array(array( 6, 14), array( 6, 34), array(46, 10), array( 2, 64)), 
+		array(array(17,  4), array(29, 14), array(49, 10), array(24, 46)), 
+		array(array( 4, 18), array(13, 32), array(48, 14), array(42, 32)), 
+		array(array(20,  4), array(40,  7), array(43, 22), array(10, 67)), 
+		array(array(19,  6), array(18, 31), array(34, 34), array(20, 61)), //40
 	);
 
 	//----------------------------------------------------------------------
