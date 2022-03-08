@@ -11,7 +11,6 @@ class QRspec
 	const QRCAP_REMINDER = 2;
 	const QRCAP_EC = 3;
 
-
 	public static $capacity = [
 		[  0,    0, 0, [  0,    0,    0,    0]], 
 		[ 21,   26, 0, [  7,   10,   13,   17]], // 1

@@ -40,11 +40,11 @@ class QRsplit
 
 		if (self::isdigitat($this->dataStr, $pos))
 		{
-			return QR_MODE_NUM;
+			return QRstr :: QR_MODE_NUM;
 		}
 		else if (self::isalnumat($this->dataStr, $pos))
 		{
-			return QR_MODE_AN;
+			return QRstr :: QR_MODE_AN;
 		}
 		else if ($this->modeHint == QRstr :: QR_MODE_KANJI)
 		{
@@ -55,12 +55,12 @@ class QRsplit
 				$word = (ord($c) << 8) | ord($d);
 				if (($word >= 0x8140 && $word <= 0x9ffc) || ($word >= 0xe040 && $word <= 0xebbf))
 				{
-					return QR_MODE_KANJI;
+					return QRstr :: QR_MODE_KANJI;
 				}
 			}
 		}
 
-		return QR_MODE_8;
+		return QRstr :: QR_MODE_8;
 	}
 
 	//----------------------------------------------------------------------
