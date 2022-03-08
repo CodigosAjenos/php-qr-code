@@ -28,9 +28,9 @@
 class QRrsblock
 {
 	public $dataLength;
-	public $data = array();
+	public $data = [];
 	public $eccLength;
-	public $ecc = array();
+	public $ecc = [];
 
 	public function __construct($dl, $data, $el, &$ecc, QRrsItem $rs)
 	{
@@ -47,10 +47,10 @@ class QRrsblock
 class QRrawcode
 {
 	public $version;
-	public $datacode = array();
-	public $ecccode = array();
+	public $datacode = [];
+	public $ecccode = [];
 	public $blocks;
-	public $rsblocks = array(); //of RSblock
+	public $rsblocks = []; //of RSblock
 	public $count;
 	public $dataLength;
 	public $eccLength;

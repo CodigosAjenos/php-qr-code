@@ -33,9 +33,9 @@ class QRrsItem
 
 	public $mm; // Bits per symbol
 	public $nn; // Symbols per block (= (1<<mm)-1)
-	public $alpha_to = array(); // log lookup table
-	public $index_of = array(); // Antilog lookup table
-	public $genpoly = array(); // Generator polynomial
+	public $alpha_to = []; // log lookup table
+	public $index_of = []; // Antilog lookup table
+	public $genpoly = []; // Generator polynomial
 	public $nroots; // Number of generator roots = number of parity symbols
 	public $fcr; // First consecutive root, index form
 	public $prim; // Primitive element, index form
@@ -196,7 +196,7 @@ class QRrsItem
 class QRrs
 {
 
-	public static $items = array();
+	public static $items = [];
 
 	//----------------------------------------------------------------------
 	public static function init_rs($symsize, $gfpoly, $fcr, $prim, $nroots, $pad)

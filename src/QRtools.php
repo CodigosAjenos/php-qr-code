@@ -44,7 +44,7 @@ class QRtools
 	//----------------------------------------------------------------------
 	public static function tcpdfBarcodeArray($code, $mode = 'QR,L', $tcPdfVersion = '4.5.037')
 	{
-		$barcode_array = array();
+		$barcode_array = [];
 
 		if (!is_array($mode)) $mode = explode(',', $mode);
 
@@ -60,11 +60,11 @@ class QRtools
 
 		$barcode_array['num_rows'] = $size;
 		$barcode_array['num_cols'] = $size;
-		$barcode_array['bcode'] = array();
+		$barcode_array['bcode'] = [];
 
 		foreach ($qrTab as $line)
 		{
-			$arrAdd = array();
+			$arrAdd = [];
 			foreach (str_split($line) as $char) $arrAdd[] = ($char == '1') ? 1 : 0;
 			$barcode_array['bcode'][] = $arrAdd;
 		}
@@ -75,7 +75,7 @@ class QRtools
 	//----------------------------------------------------------------------
 	public static function clearCache()
 	{
-		self::$frames = array();
+		self::$frames = [];
 	}
 
 	//----------------------------------------------------------------------
@@ -139,7 +139,7 @@ class QRtools
 		list($usec, $sec) = explode(" ", microtime());
 		$time = ((float)$usec + (float)$sec);
 
-		if (!isset($GLOBALS['qr_time_bench'])) $GLOBALS['qr_time_bench'] = array();
+		if (!isset($GLOBALS['qr_time_bench'])) $GLOBALS['qr_time_bench'] = [];
 
 		$GLOBALS['qr_time_bench'][$markerId] = $time;
 	}

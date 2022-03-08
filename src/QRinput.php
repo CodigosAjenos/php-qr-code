@@ -746,7 +746,7 @@ class QRinput
 		if ($padlen > 0)
 		{
 
-			$padbuf = array();
+			$padbuf = [];
 			for ($i = 0;$i < $padlen;$i++)
 			{
 				$padbuf[$i] = ($i & 1) ? 0x11 : 0xec;
