@@ -1,5 +1,5 @@
 {
-    "name": "jysperu/QRCode",
+    "name": "jysperu/php-qr-code",
     "description": "Based in http://phpqrcode.sourceforge.net/",
     "keywords": ["QRcode", "qr", "PHP QR"],
     "license": "GPL",
