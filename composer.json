@@ -1,7 +1,7 @@
 {
     "name": "jysperu/php-qr-code",
     "description": "Based in http://phpqrcode.sourceforge.net/",
-    "keywords": ["QRcode", "qr", "PHP QR"],
+    "keywords": ["QRcode", "qr", "PHP QR", "qrcode", "qr-code", "qr-generator", "qr", "qr-code-generator", "qrcode-generator"],
     "license": "GPL-3.0-or-later",
     "type": "library",
     "require": {
