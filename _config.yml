@@ -1,1 +1,5 @@
 theme: jekyll-theme-minimal
+title: PHP QR CODE
+logo: /logo.png
+description: Just making QR Code in PHP
+show_downloads: true
