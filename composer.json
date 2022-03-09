@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "QRcode": "src/"
+            "QRcode/": "src/"
         }
     }
 }
