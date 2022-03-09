@@ -87,9 +87,13 @@ class QRimage
 	{
 		$image = self::image($frame, $pixelPerPoint, $outerFrame);
 
+		imagepalettetotruecolor($image);
+		imagealphablending($image, true);
+		imagesavealpha($image, true);
+
 		if ($filename === false)
 		{
-			Header("Content-type: image/png");
+			Header("Content-type: image/webp");
 			ImageWebp($image, null, $q);
 		}
 		else
@@ -97,7 +101,7 @@ class QRimage
 			if ($saveandprint === true)
 			{
 				ImageWebp($image, $filename, $q);
-				header("Content-type: image/png");
+				header("Content-type: image/webp");
 				ImageWebp($image, null, $q);
 			}
 			else

@@ -23,28 +23,28 @@ class QRencode
 
 		switch ($level . '')
 		{
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-			$enc->level = $level;
-		break;
-		case 'l':
-		case 'L':
-			$enc->level = QRstr :: QR_ECLEVEL_L;
-		break;
-		case 'm':
-		case 'M':
-			$enc->level = QRstr :: QR_ECLEVEL_M;
-		break;
-		case 'q':
-		case 'Q':
-			$enc->level = QRstr :: QR_ECLEVEL_Q;
-		break;
-		case 'h':
-		case 'H':
-			$enc->level = QRstr :: QR_ECLEVEL_H;
-		break;
+			case '0':
+			case '1':
+			case '2':
+			case '3':
+				$enc->level = $level;
+			break;
+			case 'l':
+			case 'L':
+				$enc->level = QRstr :: QR_ECLEVEL_L;
+			break;
+			case 'm':
+			case 'M':
+				$enc->level = QRstr :: QR_ECLEVEL_M;
+			break;
+			case 'q':
+			case 'Q':
+				$enc->level = QRstr :: QR_ECLEVEL_Q;
+			break;
+			case 'h':
+			case 'H':
+				$enc->level = QRstr :: QR_ECLEVEL_H;
+			break;
 		}
 
 		return $enc;
@@ -193,6 +193,10 @@ class QRencode
 			$maxSize = (int)(QRconfig :: QR_PNG_MAXIMUM_SIZE / (count($tab) + 2 * $this->margin));
 
 			$target_image = QRimage::image($tab, min(max(1, $this->size), $maxSize), $this->margin);
+
+			imagepalettetotruecolor($target_image);
+			imagealphablending($target_image, true);
+			imagesavealpha($target_image, true);
 
 			ob_start(); // Let's start output buffering.
 			imagewebp($target_image, null, $q); //This will normally output the image, but because of ob_start(), it won't.
